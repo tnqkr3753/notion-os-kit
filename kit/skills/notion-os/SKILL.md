@@ -17,23 +17,24 @@ over loading profile-specific wrapper prose.
 
 ## CLI First
 
-Run these from the repo root:
+Use the installed CLI first:
 
 ```bash
-kit/scripts/notion-os-kit doctor --profile <profile-name>
-kit/scripts/notion-os-kit connect --profile <profile-name> --workspace <label> --root-page <page-id>
-kit/scripts/notion-os-kit install-skills --profile <profile-name>
-kit/scripts/notion-os-kit today-summary --profile <profile-name> --session-finder <path>
-kit/scripts/notion-os-kit token-report
+nok doctor --profile <profile-name>
+nok init --profile <profile-name> --workspace <label> --root-page <page-id>
+nok install-skills --profile <profile-name>
+nok today-summary --profile <profile-name> --session-finder <path>
+nok token-report
 ```
 
-Use `docs/runbooks/notion_os_kit_doctor.md` for command details. Do not
-duplicate that runbook here.
+From a source checkout, `kit/scripts/notion-os-kit ...` is the fallback. Use
+`docs/runbooks/notion_os_kit_doctor.md` for command details. Do not duplicate
+that runbook here.
 
 ## Work Routing
 
 1. Run `doctor` before live Notion work.
-2. Run `connect` to create or repair local profile state.
+2. Run `init` to create or repair local profile state.
 3. Run `install-skills` to generate compact profile and workflow skills.
 4. Run `today-summary` to draft Workstream/Ticket reconciliation from local
    coding-agent sessions.

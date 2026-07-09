@@ -1,7 +1,7 @@
 usage_doctor() {
-  cat <<'EOF'
+  cat <<EOF
 Usage:
-  kit/scripts/notion-os-kit doctor [--profile <name>]
+  $CLI_NAME doctor [--profile <name>]
 
 Options:
   --profile <name>  Profile name to check. Defaults to NOTION_OS_PROFILE or personal-os.

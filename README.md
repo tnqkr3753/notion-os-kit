@@ -14,6 +14,8 @@ Run as an installed tool:
 
 ```bash
 nok doctor --profile personal-os
+nok init --profile personal-os --workspace "Personal OS Workspace" --root-page <page-id>
+nok install-skills --profile personal-os
 ```
 
 Run directly from GitHub with `uvx`:

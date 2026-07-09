@@ -1,7 +1,7 @@
 usage_install_skills() {
-  cat <<'EOF'
+  cat <<EOF
 Usage:
-  kit/scripts/notion-os-kit install-skills --profile <name>
+  $CLI_NAME install-skills --profile <name>
 
 Generates compact orchestrator and workflow skills from profile metadata:
   ~/.agents/skills/<skill_prefix>/SKILL.md
@@ -102,7 +102,7 @@ run_install_skills() {
   cat >"$skill_file" <<EOF
 ---
 name: $skill_prefix
-description: Manage the $display_name Notion OS profile through notion-os-kit CLI commands.
+description: Manage the $display_name Notion OS profile through nok CLI commands.
 ---
 
 # $display_name
@@ -112,7 +112,7 @@ Use this skill when the user asks to operate the \`$name\` Notion OS profile.
 Start with deterministic local checks:
 
 \`\`\`bash
-kit/scripts/notion-os-kit doctor --profile $name
+nok doctor --profile $name
 \`\`\`
 
 Profile source resolution order is repo, home, then example. Local deployment
@@ -122,8 +122,8 @@ state stays under:
 ~/.notion-os-kit/profiles/$name/state.local.yaml
 \`\`\`
 
-Use \`connect\` only to update local files, not live Notion content. Use
-\`install-skills --profile $name\` to regenerate this skill and its workflow
+Use \`nok init\` only to update local files, not live Notion content. Use
+\`nok install-skills --profile $name\` to regenerate this skill and its workflow
 wrappers.
 
 Workspace label: $workspace_label
@@ -142,7 +142,7 @@ EOF
     cat >"$skill_file" <<EOF
 ---
 name: $wrapper_name
-description: Operate the $wrapper_title workflow for the $display_name Notion OS profile through notion-os-kit metadata and local state.
+description: Operate the $wrapper_title workflow for the $display_name Notion OS profile through nok metadata and local state.
 ---
 
 # $display_name $wrapper_title
@@ -153,7 +153,7 @@ workflow in the \`$name\` Notion OS profile.
 Start with deterministic local checks:
 
 \`\`\`bash
-kit/scripts/notion-os-kit doctor --profile $name
+nok doctor --profile $name
 \`\`\`
 
 Profile metadata comes from the resolved profile source. Local deployment state

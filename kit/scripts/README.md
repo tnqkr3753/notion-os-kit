@@ -7,6 +7,7 @@ documentation.
 Runnable commands:
 
 - `kit/scripts/notion-os-kit doctor --profile <profile-name>`
+- `kit/scripts/notion-os-kit init --profile <profile-name> --workspace <label> --root-page <page-id>`
 - `kit/scripts/notion-os-kit connect --profile <profile-name> --workspace <label> --root-page <page-id>`
 - `kit/scripts/notion-os-kit install-skills --profile <profile-name>`
 - `kit/scripts/notion-os-kit today-summary --profile <profile-name> --session-finder <path>`
