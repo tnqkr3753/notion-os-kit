@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -u
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+SCRIPT_LIB_DIR="$ROOT_DIR/kit/scripts/lib"
+
+. "$SCRIPT_LIB_DIR/common.sh"
+. "$SCRIPT_LIB_DIR/doctor.sh"
+. "$SCRIPT_LIB_DIR/connect.sh"
+. "$SCRIPT_LIB_DIR/install-skills.sh"
+. "$SCRIPT_LIB_DIR/token-report.sh"
+
+usage() {
+  cat <<'EOF'
+Usage:
+  kit/scripts/notion-os-kit <command> [options]
+
+Commands:
+  doctor          Check local prerequisites, profile source, local state, ntn auth, and skill installation.
+  connect         Create or update a local profile connection under ~/.notion-os-kit/profiles.
+  install-skills  Generate compact local agent skills from profile metadata.
+  token-report    Report public source size and duplicate template hashes.
+
+Run `kit/scripts/notion-os-kit <command> --help` for command-specific options.
+EOF
+}
+
+command="${1:-doctor}"
+if [ "$#" -gt 0 ]; then
+  shift
+fi
+
+case "$command" in
+  doctor)
+    dispatch_doctor "$@"
+    ;;
+  connect)
+    run_connect "$@"
+    ;;
+  install-skills)
+    run_install_skills "$@"
+    ;;
+  token-report)
+    dispatch_token_report "$@"
+    ;;
+  -h|--help)
+    usage
+    ;;
+  *)
+    usage >&2
+    die_usage 2 "unknown command: $command"
+    exit 2
+    ;;
+esac

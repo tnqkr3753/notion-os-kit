@@ -1,0 +1,37 @@
+profile: personal-os
+
+workspace:
+  label: Personal OS Workspace
+  root_page_id: replace-with-root-page-id
+
+data_sources:
+  Areas: replace-with-areas-data-source-id
+  Projects: replace-with-projects-data-source-id
+  Workstreams: replace-with-workstreams-data-source-id
+  Tickets: replace-with-tickets-data-source-id
+  Meetings: replace-with-meetings-data-source-id
+  Knowledge: replace-with-knowledge-data-source-id
+  Inbox: replace-with-inbox-data-source-id
+
+databases:
+  Areas: replace-with-areas-database-id
+  Projects: replace-with-projects-database-id
+  Workstreams: replace-with-workstreams-database-id
+  Tickets: replace-with-tickets-database-id
+  Meetings: replace-with-meetings-database-id
+  Knowledge: replace-with-knowledge-database-id
+  Inbox: replace-with-inbox-database-id
+
+pages:
+  template_hub: replace-with-template-hub-page-id
+  dashboard: replace-with-dashboard-page-id
+
+views:
+  Projects:
+    by_area: replace-with-projects-by-area-view-id
+  Workstreams:
+    by_project: replace-with-workstreams-by-project-view-id
+  Tickets:
+    by_workstream: replace-with-tickets-by-workstream-view-id
+  Meetings:
+    by_project: replace-with-meetings-by-project-view-id

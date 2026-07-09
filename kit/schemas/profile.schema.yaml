@@ -1,0 +1,37 @@
+required:
+  - profile
+  - model
+  - defaults
+properties:
+  profile:
+    type: object
+    required:
+      - name
+      - display_name
+    properties:
+      name:
+        type: string
+      display_name:
+        type: string
+      workspace_label:
+        type: string
+  model:
+    type: object
+    required:
+      - databases
+      - relation_model
+    properties:
+      databases:
+        type: array
+        items:
+          type: string
+      relation_model:
+        type: string
+  defaults:
+    type: object
+    properties:
+      local_state_path:
+        type: string
+      skill_prefix:
+        type: string
+

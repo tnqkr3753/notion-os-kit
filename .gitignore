@@ -1,0 +1,7 @@
+.llm-wiki/
+.notion-os-kit/
+.omo/
+AGENTS.md
+**/state.local.yaml
+docs/references/*
+!docs/references/README.md

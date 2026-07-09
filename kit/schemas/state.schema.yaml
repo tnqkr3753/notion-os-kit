@@ -1,0 +1,25 @@
+required:
+  - profile
+  - workspace
+  - data_sources
+properties:
+  profile:
+    type: string
+  workspace:
+    type: object
+    required:
+      - label
+    properties:
+      label:
+        type: string
+      root_page_id:
+        type: string
+  data_sources:
+    type: object
+  databases:
+    type: object
+  pages:
+    type: object
+  views:
+    type: object
+

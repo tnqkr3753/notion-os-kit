@@ -1,0 +1,32 @@
+profile:
+  name: personal-os
+  display_name: Personal OS
+  workspace_label: Personal OS Workspace
+
+model:
+  databases:
+    - Areas
+    - Projects
+    - Workstreams
+    - Tickets
+    - Meetings
+    - Knowledge
+    - Inbox
+  relation_model: Area -> Project -> Workstream -> Ticket
+
+defaults:
+  skill_prefix: personal-os
+  local_state_path: "~/.notion-os-kit/profiles/personal-os/state.local.yaml"
+  generation_mode: generation-first
+
+rules:
+  use_kit_defaults: true
+
+templates:
+  Areas: ../../kit/templates/area.md
+  Projects: ../../kit/templates/project.md
+  Workstreams: ../../kit/templates/workstream.md
+  Tickets: ../../kit/templates/ticket.md
+  Meetings: ../../kit/templates/meeting.md
+  Knowledge: ../../kit/templates/knowledge.md
+  Inbox: ../../kit/templates/inbox.md
