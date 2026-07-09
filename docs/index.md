@@ -20,7 +20,7 @@ Use this page as the entry point for durable project knowledge.
 
 ## Runbooks
 
-- `runbooks/notion_os_kit_doctor.md`: shared CLI reference for `doctor`, `connect`, `install-skills`, and `token-report`
+- `runbooks/notion_os_kit_doctor.md`: shared CLI reference for `doctor`, `connect`, `install-skills`, `today-summary`, and `token-report`
 
 ## References
 

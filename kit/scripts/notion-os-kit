@@ -8,6 +8,7 @@ SCRIPT_LIB_DIR="$ROOT_DIR/kit/scripts/lib"
 . "$SCRIPT_LIB_DIR/doctor.sh"
 . "$SCRIPT_LIB_DIR/connect.sh"
 . "$SCRIPT_LIB_DIR/install-skills.sh"
+. "$SCRIPT_LIB_DIR/today-summary.sh"
 . "$SCRIPT_LIB_DIR/token-report.sh"
 
 usage() {
@@ -19,6 +20,7 @@ Commands:
   doctor          Check local prerequisites, profile source, local state, ntn auth, and skill installation.
   connect         Create or update a local profile connection under ~/.notion-os-kit/profiles.
   install-skills  Generate compact local agent skills from profile metadata.
+  today-summary   Build a Workstream/Ticket reconciliation draft from today's agent sessions.
   token-report    Report public source size and duplicate template hashes.
 
 Run `kit/scripts/notion-os-kit <command> --help` for command-specific options.
@@ -39,6 +41,9 @@ case "$command" in
     ;;
   install-skills)
     run_install_skills "$@"
+    ;;
+  today-summary)
+    run_today_summary "$@"
     ;;
   token-report)
     dispatch_token_report "$@"

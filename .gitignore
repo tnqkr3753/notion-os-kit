@@ -5,3 +5,5 @@ AGENTS.md
 **/state.local.yaml
 docs/references/*
 !docs/references/README.md
+__pycache__/
+*.pyc
