@@ -16,7 +16,7 @@ collect_public_files() {
   local item
   if git -C "$ROOT_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     git -C "$ROOT_DIR" ls-files -z --cached --others --exclude-standard -- \
-      AGENTS.md README.md kit examples docs \
+      AGENTS.md README.md pyproject.toml src kit examples docs \
       | sort -z \
       | while IFS= read -r -d '' item; do
           printf '%s/%s\n' "$ROOT_DIR" "$item"
@@ -24,7 +24,7 @@ collect_public_files() {
     return
   fi
 
-  for item in AGENTS.md README.md kit examples docs; do
+  for item in AGENTS.md README.md pyproject.toml src kit examples docs; do
     if [ -f "$ROOT_DIR/$item" ]; then
       printf '%s\n' "$ROOT_DIR/$item"
     elif [ -d "$ROOT_DIR/$item" ]; then
