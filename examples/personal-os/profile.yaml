@@ -15,7 +15,7 @@ model:
   relation_model: Area -> Project -> Workstream -> Ticket
 
 defaults:
-  skill_prefix: personal-os
+  skill_prefix: notion-os
   local_state_path: "~/.notion-os-kit/profiles/personal-os/state.local.yaml"
   generation_mode: generation-first
 

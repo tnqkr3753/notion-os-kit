@@ -13,9 +13,10 @@ Runnable commands:
 - `kit/scripts/notion-os-kit today-summary --profile <profile-name> --session-finder <path>`
 - `kit/scripts/notion-os-kit token-report`
 
-`install-skills` writes a compact orchestrator plus workflow wrappers such as
-`<skill-prefix>-project` and `<skill-prefix>-today-summary`, based on the
-profile `templates:` metadata.
+`install-skills` writes a generic compact orchestrator plus workflow wrappers
+such as `notion-os-project` and `notion-os-today-summary`, based on the profile
+`templates:` metadata. The profile name remains the deployment target passed to
+`--profile`.
 
 The default local state path is:
 

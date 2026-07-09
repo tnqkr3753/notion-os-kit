@@ -4,8 +4,8 @@ Usage:
   $CLI_NAME install-skills --profile <name>
 
 Generates compact orchestrator and workflow skills from profile metadata:
-  ~/.agents/skills/<skill_prefix>/SKILL.md
-  ~/.agents/skills/<skill_prefix>-<template-key>/SKILL.md
+  ~/.agents/skills/notion-os/SKILL.md
+  ~/.agents/skills/notion-os-<template-key>/SKILL.md
 
 Options:
   --profile <name>  Profile name to install. Required.
