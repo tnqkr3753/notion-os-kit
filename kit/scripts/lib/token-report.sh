@@ -1,7 +1,7 @@
 usage_token_report() {
-  cat <<'EOF'
+  cat <<EOF
 Usage:
-  kit/scripts/notion-os-kit token-report
+  $CLI_NAME token-report
 
 Prints file count, lines, words, chars, approximate token count, and duplicate
 template hash status for public source candidates. This command does not require

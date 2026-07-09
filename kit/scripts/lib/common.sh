@@ -1,6 +1,7 @@
 HOME_PROFILE_ROOT="$HOME/.notion-os-kit/profiles"
 AGENT_SKILLS_ROOT="$HOME/.agents/skills"
 SAFE_SLUG_REGEX='^[a-z][a-z0-9-]{0,62}$'
+CLI_NAME="${NOTION_OS_KIT_COMMAND:-kit/scripts/notion-os-kit}"
 
 profile="${NOTION_OS_PROFILE:-personal-os}"
 failures=0

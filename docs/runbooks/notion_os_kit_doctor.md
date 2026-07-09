@@ -5,27 +5,29 @@ tags: runbook, notion-os-kit, doctor, connect, install-skills, today-summary, to
 
 # Notion OS Kit CLI Runbook
 
-Agents should run deterministic `notion-os-kit` commands instead of loading
+Agents should run deterministic `nok` commands instead of loading
 profile-specific wrapper prose. Use this runbook as the shared command
 reference.
 
-Run commands from the repo root.
+Use `nok` after installing the package. From a source checkout, the fallback is
+`kit/scripts/notion-os-kit`.
 
 ## Commands
 
 ```bash
-kit/scripts/notion-os-kit doctor --profile <profile-name>
-kit/scripts/notion-os-kit connect --profile <profile-name> --workspace <label> --root-page <page-id>
-kit/scripts/notion-os-kit install-skills --profile <profile-name>
-kit/scripts/notion-os-kit today-summary --profile <profile-name> --session-finder <path>
-kit/scripts/notion-os-kit token-report
+nok doctor --profile <profile-name>
+nok init --profile <profile-name> --workspace <label> --root-page <page-id>
+nok install-skills --profile <profile-name>
+nok today-summary --profile <profile-name> --session-finder <path>
+nok token-report
 ```
 
 ## When To Run
 
 - `doctor`: before setup, install, verification, or live Notion writes.
-- `connect`: when creating or repairing local profile connection files under
+- `init`: when creating or repairing local profile connection files under
   `~/.notion-os-kit/profiles/<profile-name>/`.
+- `connect`: source-compatible alias for `init`.
 - `install-skills`: after profile metadata changes, to regenerate compact local
   orchestrator and workflow agent skills under `~/.agents/skills`.
 - `today-summary`: at end of day or before work-log cleanup, to convert local

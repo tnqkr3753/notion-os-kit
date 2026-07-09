@@ -18,6 +18,7 @@ def main() -> int:
                 script = candidate
                 break
     env = os.environ.copy()
+    env.setdefault("NOTION_OS_KIT_COMMAND", "nok")
     completed = subprocess.run(["bash", str(script), *sys.argv[1:]], env=env, check=False)
     return completed.returncode
 

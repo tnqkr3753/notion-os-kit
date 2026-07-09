@@ -1,7 +1,7 @@
 usage_connect() {
-  cat <<'EOF'
+  cat <<EOF
 Usage:
-  kit/scripts/notion-os-kit connect --profile <name> --workspace <label> --root-page <page-id>
+  $CLI_NAME init --profile <name> --workspace <label> --root-page <page-id>
 
 Creates or updates only local files:
   ~/.notion-os-kit/profiles/<name>/profile.yaml

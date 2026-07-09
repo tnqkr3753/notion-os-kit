@@ -1,7 +1,7 @@
 usage_today_summary() {
-  cat <<'EOF'
+  cat <<EOF
 Usage:
-  kit/scripts/notion-os-kit today-summary --profile <name> [options]
+  $CLI_NAME today-summary --profile <name> [options]
 
 Builds a Workstream/Ticket reconciliation draft from local coding-agent
 sessions. This command does not mutate Notion.

@@ -22,3 +22,13 @@ packages = ["src/notion_os_kit"]
 "examples" = "notion_os_kit/examples"
 "docs" = "notion_os_kit/docs"
 
+[tool.uv]
+cache-keys = [
+  { file = "pyproject.toml" },
+  { file = "src/**/*.py" },
+  { file = "kit/scripts/**" },
+  { file = "kit/templates/**" },
+  { file = "examples/**" },
+  { file = "docs/**" },
+  { git = { commit = true } },
+]
