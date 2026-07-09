@@ -1,6 +1,6 @@
 ---
 title: Notion OS Kit CLI Runbook
-tags: runbook, notion-os-kit, doctor, connect, install-skills, token-report, ntn
+tags: runbook, notion-os-kit, doctor, connect, install-skills, today-summary, token-report, ntn
 ---
 
 # Notion OS Kit CLI Runbook
@@ -17,6 +17,7 @@ Run commands from the repo root.
 kit/scripts/notion-os-kit doctor --profile <profile-name>
 kit/scripts/notion-os-kit connect --profile <profile-name> --workspace <label> --root-page <page-id>
 kit/scripts/notion-os-kit install-skills --profile <profile-name>
+kit/scripts/notion-os-kit today-summary --profile <profile-name> --session-finder <path>
 kit/scripts/notion-os-kit token-report
 ```
 
@@ -27,6 +28,8 @@ kit/scripts/notion-os-kit token-report
   `~/.notion-os-kit/profiles/<profile-name>/`.
 - `install-skills`: after profile metadata changes, to regenerate compact local
   orchestrator and workflow agent skills under `~/.agents/skills`.
+- `today-summary`: at end of day or before work-log cleanup, to convert local
+  coding-agent session evidence into a Workstream/Ticket reconciliation draft.
 - `token-report`: before adding public skill, template, or documentation prose,
   to catch source-size growth and duplicate template hashes.
 
@@ -51,6 +54,21 @@ or missing optional installation steps, such as an available `ntn` update.
 
 ## Progressive Disclosure
 
-Keep generic skill files short. Let `doctor`, `connect`, `install-skills`, and
-`token-report` provide deterministic setup and validation output, then load only
-the generated profile skill needed for profile-specific Notion work.
+Keep generic skill files short. Let `doctor`, `connect`, `install-skills`,
+`today-summary`, and `token-report` provide deterministic setup and validation
+output, then load only the generated profile skill needed for profile-specific
+Notion work.
+
+## Today Summary Reconciliation
+
+`today-summary` is read-only. It gathers coding-agent sessions through a
+session finder and writes a Markdown draft with:
+
+- source sessions
+- Workstream mapping candidates
+- Ticket update decisions to confirm
+- one-at-a-time grill questions
+- an apply gate for later Notion writes
+
+Use `--sessions-json <path>` for deterministic QA or offline review. Use
+`--session-finder <path>` for live collection.

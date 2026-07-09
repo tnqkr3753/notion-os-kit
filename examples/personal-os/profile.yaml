@@ -30,3 +30,4 @@ templates:
   Meetings: ../../kit/templates/meeting.md
   Knowledge: ../../kit/templates/knowledge.md
   Inbox: ../../kit/templates/inbox.md
+  Today-Summary: ../../kit/templates/today-summary.md

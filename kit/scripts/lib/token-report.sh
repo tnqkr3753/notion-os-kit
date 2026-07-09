@@ -55,7 +55,7 @@ run_token_report() {
     [ -f "$file" ] || continue
     lines="$(wc -l <"$file" | tr -d ' ')"
     words="$(wc -w <"$file" | tr -d ' ')"
-    chars="$(wc -m <"$file" | tr -d ' ')"
+    chars="$(LC_ALL=C wc -c <"$file" | tr -d ' ')"
     file_count=$((file_count + 1))
     total_lines=$((total_lines + lines))
     total_words=$((total_words + words))

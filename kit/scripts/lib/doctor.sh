@@ -77,6 +77,11 @@ run_doctor() {
     check_file "$profile_dir/templates/knowledge.md" "Knowledge template exists"
     check_file "$profile_dir/templates/inbox.md" "Inbox template exists"
     check_file "$profile_dir/templates/area.md" "Area template exists"
+    if [ -f "$profile_dir/templates/today-summary.md" ]; then
+      pass "Today Summary template exists"
+    else
+      check_file "$ROOT_DIR/kit/templates/today-summary.md" "generic Today Summary template exists"
+    fi
   else
     check_file "$ROOT_DIR/kit/templates/project.md" "generic Project template exists"
     check_file "$ROOT_DIR/kit/templates/workstream.md" "generic Workstream template exists"
@@ -85,6 +90,7 @@ run_doctor() {
     check_file "$ROOT_DIR/kit/templates/knowledge.md" "generic Knowledge template exists"
     check_file "$ROOT_DIR/kit/templates/inbox.md" "generic Inbox template exists"
     check_file "$ROOT_DIR/kit/templates/area.md" "generic Area template exists"
+    check_file "$ROOT_DIR/kit/templates/today-summary.md" "generic Today Summary template exists"
   fi
 
   if find "$ROOT_DIR" -path "$ROOT_DIR/.git" -prune -o -name state.local.yaml -print | grep -q .; then

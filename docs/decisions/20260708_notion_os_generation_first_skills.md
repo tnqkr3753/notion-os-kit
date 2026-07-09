@@ -27,6 +27,8 @@ The skill system is split into:
 - `<profile-name>-meeting`: Meeting capture, meeting prep, decisions, and action items.
 - `<profile-name>-knowledge`: durable Knowledge capture.
 - `<profile-name>-inbox`: raw capture for unresolved classification.
+- `<profile-name>-today-summary`: daily reconciliation from coding-agent
+  sessions into Workstream and Ticket updates.
 
 Public examples live under:
 
@@ -55,6 +57,8 @@ Runtime Notion IDs and live deployment state also live outside the repo:
 - Attach Knowledge to the most specific clear source:
   Ticket, Meeting, Workstream, then Project.
 - Use Inbox only when structured creation would require guessing.
+- Use Today Summary to reconcile completed and in-progress agent sessions back
+  into Workstreams and Tickets before creating free-form daily notes.
 
 ## Interview Rules
 
@@ -64,6 +68,8 @@ Ask before writing only when the answer changes:
 - required relation
 - page count or split
 - operational meaning
+- whether a coding-agent session updates an existing Ticket, creates a new
+  Ticket, or should only update Workstream progress
 
 Examples:
 
@@ -71,6 +77,7 @@ Examples:
 - `회의로 저장할까, Knowledge로 남길까?`
 - `이건 하나의 Meeting으로 저장하고 액션아이템은 Ticket으로 쪼갤까?`
 - `Project 단위 기록이야, Workstream 단위 기록이야?`
+- `이 세션은 기존 Ticket 업데이트야, 새 Ticket 후보야?`
 
 ## Verification
 
@@ -82,3 +89,5 @@ Every Notion write should be verified through the matching surface:
 - Project and Workstream pages have their required relation-filtered linked views.
 - normal rows are not hidden by template flags such as `Archived = true`.
 - Inbox rows default to `Processed = false`.
+- Today Summary drafts are read-only until the user confirms Workstream/Ticket
+  mappings and status changes.
