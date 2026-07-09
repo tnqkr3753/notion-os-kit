@@ -228,7 +228,7 @@ profile_skill_prefix() {
   if [ -n "$value" ]; then
     printf '%s\n' "$value"
   else
-    yaml_value "name" "$1"
+    printf 'notion-os\n'
   fi
 }
 

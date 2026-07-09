@@ -225,7 +225,7 @@ run_connect() {
     skill_prefix="$(profile_skill_prefix "$PROFILE_SOURCE_FILE")"
   fi
   [ -n "$display_name" ] || display_name="$(display_name_from_profile "$name")"
-  [ -n "$skill_prefix" ] || skill_prefix="$name"
+  [ -n "$skill_prefix" ] || skill_prefix="notion-os"
   validate_generated_scalars "$name" "$display_name" "$workspace_label" "$skill_prefix" "$root_page" || return 2
   verify_ntn_workspace "$workspace_label" || return 1
 
