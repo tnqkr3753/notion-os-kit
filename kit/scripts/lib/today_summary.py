@@ -2,12 +2,14 @@
 from __future__ import annotations
 
 import argparse
+from dataclasses import dataclass
 import json
 import subprocess
 import sys
-from datetime import datetime
+from datetime import UTC, date, datetime, time, timedelta
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 
 def parse_args() -> argparse.Namespace:
@@ -38,14 +40,18 @@ def load_sessions(args: argparse.Namespace) -> dict[str, Any]:
     if not args.session_finder:
         raise SystemExit("session finder is required when --sessions-json is not provided")
 
+    window = local_day_window(args.date, args.timezone)
+    finder_limit = max(args.limit * 4, 500)
     command = [
         sys.executable,
         args.session_finder,
         "list",
         "--from",
-        args.date,
+        window.finder_from,
+        "--to",
+        window.finder_to,
         "--limit",
-        str(args.limit),
+        str(finder_limit),
         "--include-subagents",
     ]
     for platform in args.platform:
@@ -56,6 +62,66 @@ def load_sessions(args: argparse.Namespace) -> dict[str, Any]:
         sys.stderr.write(completed.stderr)
         raise SystemExit(completed.returncode)
     return json.loads(completed.stdout)
+
+
+@dataclass(frozen=True, slots=True)
+class LocalDayWindow:
+    start: datetime
+    end: datetime
+    finder_from: str
+    finder_to: str
+
+
+def local_day_window(local_date: str, timezone_name: str) -> LocalDayWindow:
+    try:
+        zone = ZoneInfo(timezone_name)
+    except ZoneInfoNotFoundError as error:
+        raise SystemExit(f"unknown timezone: {timezone_name}") from error
+
+    try:
+        parsed_date = date.fromisoformat(local_date)
+    except ValueError as error:
+        raise SystemExit(f"invalid date: {local_date}") from error
+    start = datetime.combine(parsed_date, time.min, tzinfo=zone)
+    end = start + timedelta(days=1)
+    utc_start = start.astimezone(UTC)
+    utc_end = end.astimezone(UTC)
+    finder_from = utc_start.date().isoformat()
+    finder_to = (utc_end.date() + timedelta(days=1)).isoformat()
+    return LocalDayWindow(start=start, end=end, finder_from=finder_from, finder_to=finder_to)
+
+
+def session_timestamp(item: dict[str, Any]) -> datetime | None:
+    value = scalar(item.get("updated_at")) or scalar(item.get("created_at"))
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def filter_payload(args: argparse.Namespace, payload: dict[str, Any]) -> dict[str, Any]:
+    results = payload.get("results") or []
+    if not isinstance(results, list):
+        raise SystemExit("session JSON must contain a results array")
+
+    window = local_day_window(args.date, args.timezone)
+    filtered: list[dict[str, Any]] = []
+    for item in results:
+        if not isinstance(item, dict):
+            continue
+        timestamp = session_timestamp(item)
+        if timestamp is None:
+            continue
+        local_timestamp = timestamp.astimezone(window.start.tzinfo)
+        if window.start <= local_timestamp < window.end:
+            filtered.append(item)
+
+    output = dict(payload)
+    output["results"] = filtered[: args.limit]
+    output["count"] = len(output["results"])
+    return output
 
 
 def scalar(value: Any) -> str:
@@ -174,7 +240,7 @@ def build_markdown(args: argparse.Namespace, payload: dict[str, Any]) -> str:
 
 def main() -> int:
     args = parse_args()
-    payload = load_sessions(args)
+    payload = filter_payload(args, load_sessions(args))
     markdown = build_markdown(args, payload)
     if args.output:
         output = Path(args.output)
